@@ -491,6 +491,10 @@
                     console.log(e);
                 });
     }
+    else if (!container && blobStorage === "cdn")
+    {
+        throw new Error("You may not run a full Azure Storage synch against the CDN instance.  Please specify a container: [contacts, images, media, oval, pdf, sugar, thumb]");
+    }
     else
     {
 
