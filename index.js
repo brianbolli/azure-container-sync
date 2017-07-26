@@ -55,7 +55,10 @@
         return new Promise(function (resolve, reject) {
             source.listContainersSegmented(null, function (error, result) {
                 if (error)
+				{
                     return reject(error);
+				}
+				
                 resolve(result.entries);
             });
 
@@ -95,7 +98,7 @@
                     toSynch.push(container);
                     var task = function ()
                     {
-                        return createContainer(container.name)
+                        return createContainer(container.name, { publicAccessLevel : 'blob' })
                                 .then(function (result) {
 
                                     if (++completed === length)
@@ -107,7 +110,8 @@
                     };
 
                     containerQueue.pushTask(task);
-                } else
+                }
+				else
                 {
                     ++completed;
                 }
@@ -260,8 +264,15 @@
                 });
             });
         });
-    }
-    ;
+    };
+	
+	function validateContainer(result)
+	{
+		getBlobs(result.container)
+				.then(function(result){
+					
+				});
+	}
 
     /**
      * @method   validateBlobs
@@ -470,7 +481,7 @@
     var container = process.argv[3];
     
     // Confirm starting at container X flag not present
-    if (container.indexOf("...") === 0 && blobStorage === "storage")
+    if (container && container.indexOf("...") === 0 && blobStorage === "storage")
     {
         startAt = extractNumberFromProjectContainerName(container);
         container = false;
@@ -480,6 +491,7 @@
     if (container)
     {
         getBlobs(container)
+				//.then(validateContainer)
                 .then(validateBlobs)
                 .then(streamBlobs)
                 .then(function (result) {
