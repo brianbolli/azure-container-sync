@@ -2,6 +2,6 @@
 
 var azuresync = require('../index');
 
-console.log('I worked?');
+console.log('AzureSync - Arc Technology Group');
 
 

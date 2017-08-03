@@ -1,6 +1,6 @@
 {
   "name": "azuresync",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Utility to sync containers for backup or mirroring purposes between two seperate blob sotrage instances",
   "main": "index.js",
   "scripts": {
