@@ -1,10 +1,13 @@
 {
   "name": "azuresync",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility to sync containers for backup or mirroring purposes between two seperate blob sotrage instances",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "azuresync": "index.js"
   },
   "repository": {
     "type": "git",
@@ -28,5 +31,6 @@
     "azure-storage": "^1.3.1",
     "bluebird": "^3.4.6",
     "progress": "^1.1.8"
-  }
+  },
+  "preferGlobal": "true"
 }
